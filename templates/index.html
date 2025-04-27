@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Australia Weather Rain Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <h1>Australia Weather Rain Prediction</h1>
+            <p class="subheading">Predict the chances of rain based on the weather data</p>
+        </header>
+
+        <!-- Prediction Form -->
+        <div class="form-container">
+            <form method="post">
+                <div class="form-header">
+                    <h2>Enter Weather Details</h2>
+                </div>
+                {% for feature in features %}
+                <div class="form-group">
+                    <label for="{{ feature }}">{{ feature }}:</label>
+                    <input type="text" name="{{ feature }}" required>
+                </div>
+                {% endfor %}
+                <div class="button-container">
+                    <button type="submit">Predict</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Prediction Result -->
+        {% if prediction is not none %}
+        <div class="prediction-box">
+            <h3>Prediction:</h3>
+            <div class="prediction-text">
+                <h2>{{ prediction }}</h2>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>
